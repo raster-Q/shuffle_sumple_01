@@ -1,3 +1,29 @@
 body {
   font-family: sans-serif;
+  text-align: center;
+}
+
+h3 {
+  margin-top: 0%;
+  margin-bottom: 1%;
+}
+
+.wide {
+  max-width: 300px;
+  min-width: 300px;
+}
+.card {
+  width: 95%;
+}
+
+.numCell {
+  width: 8%;
+}
+
+.cardCell {
+  width: 15%;
+}
+
+.spaceCell {
+  width: 2%;
 }

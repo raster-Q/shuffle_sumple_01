@@ -12,9 +12,15 @@ h3 {
   max-width: 300px;
   min-width: 300px;
 }
+
+#displayTable {
+  max-height: 225px;
+  min-height: 225px;
+}
+
 .card {
   width: 95%;
-  filter: brightness(0.5);
+  filter: brightness(1);
 }
 
 .numCell {
@@ -22,6 +28,14 @@ h3 {
 }
 
 .cardCell {
+  width: 15%;
+}
+
+.cardTable {
+  height: 35%;
+}
+
+.statusCell {
   width: 15%;
 }
 

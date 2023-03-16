@@ -8,20 +8,45 @@ import "./styles.css";
   function shuffle(arr) {
     let n = arr.length;
     let temp, i;
-    let nn = 0;
 
-    function temper() {
-      var temper = document.getElementById(compass.temp[0]);
-      temper.innerHTML = `${car_Dimension[temp].img}`;
+    let results;
+    let arr_i;
+    let arr_n;
+
+    function tempe() {
+      arr_n = document.getElementById(compass.arr_i_n[n]);
+      arr_n.innerHTML = ``;
+      temp1.innerHTML = `${car_Dimension[temp].img}`;
+    }
+
+    function arr_i_n() {
+      arr_i = document.getElementById(compass.arr_i_n[i]);
+      arr_n = document.getElementById(compass.arr_i_n[n]);
+      arr_i.innerHTML = ``;
+      arr_n.innerHTML = `${car_Dimension[i].img}`;
+    }
+
+    function comp() {
+      arr_i = document.getElementById(compass.arr_i_n[i]);
+      temp1.innerHTML = ``;
+      arr_i.innerHTML = `${temp1}`;
+    }
+
+    function result() {
+      results = document.getElementById(compass.results[n]);
+      arr_n = document.getElementById(compass.arr_i_n[n]);
+      arr_n.innerHTML = ``;
+      results.innerHTML = `${car_Dimension[compass.dice[n]].img}`;
     }
 
     while (n) {
       i = Math.floor(Math.random() * n--);
       temp = arr[n];
-      temper();
+      tempe();
       arr[n] = arr[i];
+      arr_i_n();
       arr[i] = temp;
-
+      result();
       nn++;
     }
     return arr;
@@ -45,7 +70,7 @@ import "./styles.css";
   const titleName = document.getElementById("titleName");
 
   //--- start
-  const numbers = document.getElementById("numbers");
+  const status = document.getElementById("status");
   const as = document.getElementById("as");
   const bs = document.getElementById("bs");
   const cs = document.getElementById("cs");
@@ -62,7 +87,7 @@ import "./styles.css";
   const d1 = document.getElementById("d1");
   const e1 = document.getElementById("e1");
   //const g1 = document.getElementById("");
-  //const temp1 = document.getElementById("temp1");
+  const temp1 = document.getElementById("temp1");
   /*
   //--- 2
   const number2 = document.getElementById("number2");
@@ -95,7 +120,7 @@ import "./styles.css";
   //const temp4 = document.getElementById("temp4");
 */
   //--- 5
-  const number5 = document.getElementById("number5");
+  const result = document.getElementById("result");
   const a5 = document.getElementById("a5");
   const b5 = document.getElementById("b5");
   const c5 = document.getElementById("c5");
@@ -106,6 +131,7 @@ import "./styles.css";
 
   //--- ボタン
   const shuffleButton = document.getElementById("shuffleButton");
+  const resetButton = document.getElementById("resetButton");
 
   //------DOM取得関連、ここまで------------//
 
@@ -148,7 +174,8 @@ import "./styles.css";
     c: ["c1", "c2", "c3", "c4", "c5"],
     d: ["d1", "d2", "d3", "d4", "d5"],
     e: ["e1", "e2", "e3", "e4", "e5"],
-    arrn: ["a5", "b4", "c3", "d2", "e1"],
+    arr_i_n: ["a1", "b1", "c1", "d1", "e1"],
+    results: ["a5", "b5", "c5", "d5", "e5"],
     temp: ["temps", "temp2", "temp3", "temp4", "temp5"]
   };
 
@@ -157,27 +184,52 @@ import "./styles.css";
 
   //////初期配置///////////////////////////
   titleName.innerHTML = `<h3>shuffleコード テスト</h3>`;
-  numbers.textContent = `S`;
-  //  number1.textContent = `1`;
+  status.textContent = "S";
+  number1.textContent = "1";
   //  number2.textContent = `2`;
   //  number3.textContent = `3`;
   //  number4.textContent = `4`;
-  number5.textContent = `5`;
+  result.textContent = "r";
+  temps.textContent = "temp";
+  function reset() {
+    //---
+    compass.dice[0] = 0;
+    compass.dice[1] = 1;
+    compass.dice[2] = 2;
+    compass.dice[3] = 3;
+    compass.dice[4] = 4;
 
-  //---
-  as.innerHTML = `${car_Dimension[compass.dice[0]].img}`;
-  bs.innerHTML = `${car_Dimension[compass.dice[1]].img}`;
-  cs.innerHTML = `${car_Dimension[compass.dice[2]].img}`;
-  ds.innerHTML = `${car_Dimension[compass.dice[3]].img}`;
-  es.innerHTML = `${car_Dimension[compass.dice[4]].img}`;
+    //---
+    a1.innerHTML = `${car_Dimension[compass.dice[0]].img}`;
+    b1.innerHTML = `${car_Dimension[compass.dice[1]].img}`;
+    c1.innerHTML = `${car_Dimension[compass.dice[2]].img}`;
+    d1.innerHTML = `${car_Dimension[compass.dice[3]].img}`;
+    e1.innerHTML = `${car_Dimension[compass.dice[4]].img}`;
 
+    //---
+    a5.innerHTML = ``;
+    b5.innerHTML = ``;
+    c5.innerHTML = ``;
+    d5.innerHTML = ``;
+    e5.innerHTML = ``;
+    temp1.innerHTML = ``;
+
+    //---
+    shuffleButton.disabled = false;
+    resetButton.disabled = true;
+  }
+  reset();
   //////初期配置、ここまで////////////////////
 
   //------スクリプト----------------//
   //---シャッフルボタン、イベント
   shuffleButton.addEventListener("click", () => {
     shuffle(compass.dice);
+    shuffleButton.disabled = true;
+    resetButton.disabled = false;
   });
+
+  resetButton.addEventListener("click", reset, false);
 
   //////即時関数、ここまで
 })();

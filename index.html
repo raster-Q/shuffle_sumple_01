@@ -6,25 +6,25 @@
   </head>
 
   <body>
-    <table align="center" border="1" class="wide">
+    <table align="center" border="1" class="wide" id="displayTable">
       <tr>
         <td colspan="8" id="titleName"></td>
       </tr>
 
-      <!-- start -->
+      <!-- status -->
       <tr>
-        <td id="numbers" class="numCell"></td>
-        <td id="as" class="cardCell"></td>
-        <td id="bs" class="cardCell"></td>
-        <td id="cs" class="cardCell"></td>
-        <td id="ds" class="cardCell"></td>
-        <td id="es" class="cardCell"></td>
+        <td id="status" class="numCell"></td>
+        <td id="as" class="statusCell"></td>
+        <td id="bs" class="statusCell"></td>
+        <td id="cs" class="statusCell"></td>
+        <td id="ds" class="statusCell"></td>
+        <td id="es" class="statusCell"></td>
         <td class="spaceCell"></td>
         <td id="temps" class="cardCell"></td>
       </tr>
 
-      <!-- 1 
-      <tr>
+      <!-- 1 -->
+      <tr class="cardTable">
         <td id="number1" class="numCell"></td>
         <td id="a1" class="cardCell"></td>
         <td id="b1" class="cardCell"></td>
@@ -72,8 +72,8 @@
       </tr>
     -->
       <!-- 5  -->
-      <tr>
-        <td id="number5" class="numCell"></td>
+      <tr class="cardTable">
+        <td id="result" class="numCell"></td>
         <td id="a5" class="cardCell"></td>
         <td id="b5" class="cardCell"></td>
         <td id="c5" class="cardCell"></td>
@@ -94,6 +94,11 @@
             value="0"
           >
             シャッフル
+          </button>
+        </td>
+        <td>
+          <button type="button" name="resetButton" id="resetButton" value="0">
+            リセット
           </button>
         </td>
       </tr>

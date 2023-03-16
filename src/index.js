@@ -8,17 +8,29 @@ import "./styles.css";
   function shuffle(arr) {
     let n = arr.length;
     let temp, i;
+    let nn = 0;
+
+    function temper() {
+      var temper = document.getElementById(compass.temp[0]);
+      temper.innerHTML = `${car_Dimension[temp].img}`;
+    }
 
     while (n) {
       i = Math.floor(Math.random() * n--);
       temp = arr[n];
-      temp1.innerHTML = `${car_Dimension[compass.dice[0]].img}`;
+      temper();
       arr[n] = arr[i];
       arr[i] = temp;
+
+      nn++;
     }
     return arr;
   }
   //---ここまで、シャッフル用関数
+
+  //---
+
+  //---
 
   //---カード表示用関数
 
@@ -50,8 +62,8 @@ import "./styles.css";
   const d1 = document.getElementById("d1");
   const e1 = document.getElementById("e1");
   //const g1 = document.getElementById("");
-  const temp1 = document.getElementById("temp1");
-
+  //const temp1 = document.getElementById("temp1");
+  /*
   //--- 2
   const number2 = document.getElementById("number2");
   const a2 = document.getElementById("a2");
@@ -60,7 +72,7 @@ import "./styles.css";
   const d2 = document.getElementById("d2");
   const e2 = document.getElementById("e2");
   //const g2 = document.getElementById("");
-  const temp2 = document.getElementById("temp2");
+  //const temp2 = document.getElementById("temp2");
 
   //--- 3
   const number3 = document.getElementById("number3");
@@ -70,7 +82,7 @@ import "./styles.css";
   const d3 = document.getElementById("d3");
   const e3 = document.getElementById("e3");
   //const g3 = document.getElementById("");
-  const temp3 = document.getElementById("temp3");
+  //const temp3 = document.getElementById("temp3");
 
   //--- 4
   const number4 = document.getElementById("number4");
@@ -80,8 +92,8 @@ import "./styles.css";
   const d4 = document.getElementById("d4");
   const e4 = document.getElementById("e4");
   //const g4 = document.getElementById("");
-  const temp4 = document.getElementById("temp4");
-
+  //const temp4 = document.getElementById("temp4");
+*/
   //--- 5
   const number5 = document.getElementById("number5");
   const a5 = document.getElementById("a5");
@@ -90,7 +102,7 @@ import "./styles.css";
   const d5 = document.getElementById("d5");
   const e5 = document.getElementById("e5");
   //const g5 = document.getElementById("");
-  const temp5 = document.getElementById("temp5");
+  //const temp5 = document.getElementById("temp5");
 
   //--- ボタン
   const shuffleButton = document.getElementById("shuffleButton");
@@ -128,10 +140,16 @@ import "./styles.css";
     }
   ];
   //------配列定義、ここまで---------------//
-  //---ダイス
+  //---座標
   const compass = {
     dice: [0, 1, 2, 3, 4],
-    1: ["bs", "cs", "ds", "es", "fs"]
+    a: ["a1", "a2", "a3", "a4", "a5"],
+    b: ["b1", "b2", "b3", "b4", "b5"],
+    c: ["c1", "c2", "c3", "c4", "c5"],
+    d: ["d1", "d2", "d3", "d4", "d5"],
+    e: ["e1", "e2", "e3", "e4", "e5"],
+    arrn: ["a5", "b4", "c3", "d2", "e1"],
+    temp: ["temps", "temp2", "temp3", "temp4", "temp5"]
   };
 
   //------オブジェクト定義-----------------//
@@ -140,10 +158,10 @@ import "./styles.css";
   //////初期配置///////////////////////////
   titleName.innerHTML = `<h3>shuffleコード テスト</h3>`;
   numbers.textContent = `S`;
-  number1.textContent = `1`;
-  number2.textContent = `2`;
-  number3.textContent = `3`;
-  number4.textContent = `4`;
+  //  number1.textContent = `1`;
+  //  number2.textContent = `2`;
+  //  number3.textContent = `3`;
+  //  number4.textContent = `4`;
   number5.textContent = `5`;
 
   //---

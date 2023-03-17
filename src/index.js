@@ -8,28 +8,40 @@ import "./styles.css";
   function shuffle(arr) {
     let n = arr.length;
     let temp, i;
-
+    let nn = 0;
     let results;
     let arr_i;
     let arr_n;
 
     function tempe() {
+      temp = arr[n];
+      slowSound.currentTime = 0;
+      slowSound.play();
       arr_n = document.getElementById(compass.arr_i_n[n]);
-      arr_n.innerHTML = ``;
+      //  arr_n.innerHTML = ``;
       temp1.innerHTML = `${car_Dimension[temp].img}`;
+      console.log("tempe" + nn++);
     }
 
     function arr_i_n() {
+      arr[n] = arr[i];
+      slowSound.currentTime = 0;
+      slowSound.play();
       arr_i = document.getElementById(compass.arr_i_n[i]);
       arr_n = document.getElementById(compass.arr_i_n[n]);
       arr_i.innerHTML = ``;
       arr_n.innerHTML = `${car_Dimension[i].img}`;
+      console.log("arr_i_n" + nn++);
     }
 
     function comp() {
+      arr[i] = temp;
+      slowSound.currentTime = 0;
+      slowSound.play();
       arr_i = document.getElementById(compass.arr_i_n[i]);
       temp1.innerHTML = ``;
       arr_i.innerHTML = `${temp1}`;
+      console.log("comp" + nn++);
     }
 
     function result() {
@@ -37,17 +49,22 @@ import "./styles.css";
       arr_n = document.getElementById(compass.arr_i_n[n]);
       arr_n.innerHTML = ``;
       results.innerHTML = `${car_Dimension[compass.dice[n]].img}`;
+      console.log("result" + nn++);
+    }
+
+    function test() {
+      console.log(compass.arr_i_n[n]);
+      console.log("あはは" + nn++);
+      slowSound.play();
     }
 
     while (n) {
       i = Math.floor(Math.random() * n--);
-      temp = arr[n];
       tempe();
-      arr[n] = arr[i];
-      arr_i_n();
-      arr[i] = temp;
-      result();
-      nn++;
+      //  slowSound.addEventListener("ended",test,false);
+      slowSound.addEventListener("ended", arr_i_n, false);
+      slowSound.addEventListener("ended", comp, false);
+      slowSound.addEventListener("ended", result, false);
     }
     return arr;
   }
@@ -132,6 +149,9 @@ import "./styles.css";
   //--- ボタン
   const shuffleButton = document.getElementById("shuffleButton");
   const resetButton = document.getElementById("resetButton");
+
+  //--- MP3
+  const slowSound = document.getElementById("slowSound");
 
   //------DOM取得関連、ここまで------------//
 

@@ -12,60 +12,100 @@ import "./styles.css";
     let results;
     let arr_i;
     let arr_n;
-
+    /*
     function tempe() {
       temp = arr[n];
-      slowSound.currentTime = 0;
-      slowSound.play();
       arr_n = document.getElementById(compass.arr_i_n[n]);
-      //  arr_n.innerHTML = ``;
+      arr_n.innerHTML = ``;
       temp1.innerHTML = `${car_Dimension[temp].img}`;
       console.log("tempe" + nn++);
-    }
-
+    }*/
+    /*
     function arr_i_n() {
       arr[n] = arr[i];
-      slowSound.currentTime = 0;
-      slowSound.play();
       arr_i = document.getElementById(compass.arr_i_n[i]);
       arr_n = document.getElementById(compass.arr_i_n[n]);
       arr_i.innerHTML = ``;
       arr_n.innerHTML = `${car_Dimension[i].img}`;
       console.log("arr_i_n" + nn++);
-    }
-
+    }*/
+    /*
     function comp() {
       arr[i] = temp;
-      slowSound.currentTime = 0;
-      slowSound.play();
       arr_i = document.getElementById(compass.arr_i_n[i]);
       temp1.innerHTML = ``;
       arr_i.innerHTML = `${temp1}`;
       console.log("comp" + nn++);
-    }
-
+    }*/
+    /*
     function result() {
       results = document.getElementById(compass.results[n]);
       arr_n = document.getElementById(compass.arr_i_n[n]);
       arr_n.innerHTML = ``;
       results.innerHTML = `${car_Dimension[compass.dice[n]].img}`;
       console.log("result" + nn++);
+    }*/
+
+    //   function randomx() {
+    //     i = Math.floor(Math.random() * n--);
+    //   }
+    /*
+while (n) {
+    randomx();
+    tempe();
+    arr_i_n();
+    comp();
+    result();
+}
+*/
+
+    function display2(funcArray, interval) {
+      funcArray.forEach((func, i) => {
+        setTimeout(func, i * interval);
+      });
     }
 
-    function test() {
-      console.log(compass.arr_i_n[n]);
-      console.log("あはは" + nn++);
-      slowSound.play();
-    }
+    const funcArray = [
+      () => {
+        i = Math.floor(Math.random() * n--);
+      },
+      () => {
+        temp = arr[n];
+        arr_n = document.getElementById(compass.arr_i_n[n]);
+        arr_n.innerHTML = ``;
+        temp1.innerHTML = `${car_Dimension[temp].img}`;
+        console.log("tempe" + nn++);
+      },
+      () => {
+        arr[n] = arr[i];
+        arr_i = document.getElementById(compass.arr_i_n[i]);
+        arr_n = document.getElementById(compass.arr_i_n[n]);
+        arr_i.innerHTML = ``;
+        arr_n.innerHTML = `${car_Dimension[i].img}`;
+        console.log("arr_i_n" + nn++);
+      },
+      () => {
+        arr[i] = temp;
+        arr_i = document.getElementById(compass.arr_i_n[i]);
+        temp1.innerHTML = ``;
+        arr_i.innerHTML = `${temp1}`;
+        console.log("comp" + nn++);
+      },
+      () => {
+        results = document.getElementById(compass.results[n]);
+        arr_n = document.getElementById(compass.arr_i_n[n]);
+        arr_n.innerHTML = ``;
+        results.innerHTML = `${car_Dimension[compass.dice[n]].img}`;
+        console.log("result" + nn++);
+      }
+    ];
 
-    while (n) {
-      i = Math.floor(Math.random() * n--);
-      tempe();
-      //  slowSound.addEventListener("ended",test,false);
-      slowSound.addEventListener("ended", arr_i_n, false);
-      slowSound.addEventListener("ended", comp, false);
-      slowSound.addEventListener("ended", result, false);
-    }
+    display2(funcArray, 1000);
+
+    //while (n) {
+    //  display2(shu,1000);
+    //}
+
     return arr;
   }
   //---ここまで、シャッフル用関数
@@ -247,6 +287,8 @@ import "./styles.css";
     shuffle(compass.dice);
     shuffleButton.disabled = true;
     resetButton.disabled = false;
+    slowSound.currentTime = 0;
+    slowSound.play();
   });
 
   resetButton.addEventListener("click", reset, false);

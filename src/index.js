@@ -5,6 +5,7 @@ import "./styles.css";
 
   //------関数定義---------------//
   //---シャッフル用関数
+  /*
   function shuffle(arr) {
     let n = arr.length;
     let temp, i;
@@ -12,52 +13,6 @@ import "./styles.css";
     let results;
     let arr_i;
     let arr_n;
-    /*
-    function tempe() {
-      temp = arr[n];
-      arr_n = document.getElementById(compass.arr_i_n[n]);
-      arr_n.innerHTML = ``;
-      temp1.innerHTML = `${car_Dimension[temp].img}`;
-      console.log("tempe" + nn++);
-    }*/
-    /*
-    function arr_i_n() {
-      arr[n] = arr[i];
-      arr_i = document.getElementById(compass.arr_i_n[i]);
-      arr_n = document.getElementById(compass.arr_i_n[n]);
-      arr_i.innerHTML = ``;
-      arr_n.innerHTML = `${car_Dimension[i].img}`;
-      console.log("arr_i_n" + nn++);
-    }*/
-    /*
-    function comp() {
-      arr[i] = temp;
-      arr_i = document.getElementById(compass.arr_i_n[i]);
-      temp1.innerHTML = ``;
-      arr_i.innerHTML = `${temp1}`;
-      console.log("comp" + nn++);
-    }*/
-    /*
-    function result() {
-      results = document.getElementById(compass.results[n]);
-      arr_n = document.getElementById(compass.arr_i_n[n]);
-      arr_n.innerHTML = ``;
-      results.innerHTML = `${car_Dimension[compass.dice[n]].img}`;
-      console.log("result" + nn++);
-    }*/
-
-    //   function randomx() {
-    //     i = Math.floor(Math.random() * n--);
-    //   }
-    /*
-while (n) {
-    randomx();
-    tempe();
-    arr_i_n();
-    comp();
-    result();
-}
-*/
 
     function display2(funcArray, interval) {
       funcArray.forEach((func, i) => {
@@ -88,7 +43,7 @@ while (n) {
         arr[i] = temp;
         arr_i = document.getElementById(compass.arr_i_n[i]);
         temp1.innerHTML = ``;
-        arr_i.innerHTML = `${temp1}`;
+        arr_i.innerHTML = `${car_Dimension[temp].img}`;
         console.log("comp" + nn++);
       },
       () => {
@@ -100,14 +55,90 @@ while (n) {
       }
     ];
 
-    display2(funcArray, 1000);
 
-    //while (n) {
-    //  display2(shu,1000);
-    //}
+    display2(funcArray, 1000 + (4000 * nn));
 
     return arr;
   }
+  
+  */
+
+  function shuffle(arr) {
+    let n = arr.length;
+    let temp, i;
+    let nn = 0;
+    let nnn;
+    let results;
+    let arr_i;
+    let arr_n;
+    let tempImg = [null, null, null, null, null];
+    let iImg = [null, null, null, null, null];
+    let nImg = [null, null, null, null, null];
+    const funcArray = [];
+
+    function display2(funcArray, interval) {
+      funcArray.forEach((func, i) => {
+        setTimeout(func, i * interval);
+      });
+    }
+
+    while (n) {
+      i = Math.floor(Math.random() * n--);
+      temp = arr[n];
+      arr_n = document.getElementById(compass.arr_i_n[n]);
+      tempImg[nn] = car_Dimension[temp].img;
+      nnn = nn;
+      funcArray.push(() => {
+        arr_n.innerHTML = ``;
+        temp1.innerHTML = `${tempImg[Math.floor(i / 5)]}`;
+
+        console.log("tempe" + nnn);
+      });
+
+      arr[n] = arr[i];
+      arr_i = document.getElementById(compass.arr_i_n[i]);
+      arr_n = document.getElementById(compass.arr_i_n[n]);
+      iImg[nn] = car_Dimension[i].img;
+      nnn = nn;
+
+      funcArray.push(() => {
+        arr_i.innerHTML = ``;
+        arr_n.innerHTML = `${iImg[Math.floor(i / 5)]}`;
+
+        console.log("arr_i_n" + nnn);
+      });
+
+      arr[i] = temp;
+      arr_i = document.getElementById(compass.arr_i_n[i]);
+      tempImg[nn] = car_Dimension[temp].img;
+      nnn = nn;
+
+      funcArray.push(() => {
+        temp1.innerHTML = ``;
+        arr_i.innerHTML = `${tempImg[Math.floor(i / 5)]}`;
+
+        console.log("comp" + nnn);
+      });
+      results = document.getElementById(compass.results[n]);
+      arr_n = document.getElementById(compass.arr_i_n[n]);
+      nImg[nn] = car_Dimension[compass.dice[n]].img;
+      nnn = nn;
+
+      funcArray.push(() => {
+        arr_n.innerHTML = ``;
+        results.innerHTML = `${nImg[Math.floor(i / 5)]}`;
+
+        console.log("result" + nnn);
+      });
+      nn++;
+    }
+
+    console.log(funcArray);
+    display2(funcArray, 2000);
+
+    return arr;
+  }
+
   //---ここまで、シャッフル用関数
 
   //---
@@ -116,7 +147,6 @@ while (n) {
 
   //---カード表示用関数
 
-  function display() {}
   //---カード表示用、ここまで
 
   //------関数定義、ここまで-------//
@@ -287,8 +317,6 @@ while (n) {
     shuffle(compass.dice);
     shuffleButton.disabled = true;
     resetButton.disabled = false;
-    slowSound.currentTime = 0;
-    slowSound.play();
   });
 
   resetButton.addEventListener("click", reset, false);

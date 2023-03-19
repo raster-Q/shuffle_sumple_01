@@ -5,76 +5,10 @@ import "./styles.css";
 
   //------関数定義---------------//
   //---シャッフル用関数
-  /*
-  function shuffle(arr) {
-    let n = arr.length;
-    let temp, i;
-    let nn = 0;
-    let results;
-    let arr_i;
-    let arr_n;
-
-    function display2(funcArray, interval) {
-      funcArray.forEach((func, i) => {
-        setTimeout(func, i * interval);
-      });
-    }
-
-    const funcArray = [
-      () => {
-        i = Math.floor(Math.random() * n--);
-      },
-      () => {
-        temp = arr[n];
-        arr_n = document.getElementById(compass.arr_i_n[n]);
-        arr_n.innerHTML = ``;
-        temp1.innerHTML = `${car_Dimension[temp].img}`;
-        console.log("tempe" + nn++);
-      },
-      () => {
-        arr[n] = arr[i];
-        arr_i = document.getElementById(compass.arr_i_n[i]);
-        arr_n = document.getElementById(compass.arr_i_n[n]);
-        arr_i.innerHTML = ``;
-        arr_n.innerHTML = `${car_Dimension[i].img}`;
-        console.log("arr_i_n" + nn++);
-      },
-      () => {
-        arr[i] = temp;
-        arr_i = document.getElementById(compass.arr_i_n[i]);
-        temp1.innerHTML = ``;
-        arr_i.innerHTML = `${car_Dimension[temp].img}`;
-        console.log("comp" + nn++);
-      },
-      () => {
-        results = document.getElementById(compass.results[n]);
-        arr_n = document.getElementById(compass.arr_i_n[n]);
-        arr_n.innerHTML = ``;
-        results.innerHTML = `${car_Dimension[compass.dice[n]].img}`;
-        console.log("result" + nn++);
-      }
-    ];
-
-
-    display2(funcArray, 1000 + (4000 * nn));
-
-    return arr;
-  }
-  
-  */
 
   function shuffle(arr) {
     let n = arr.length;
     let temp, i;
-    let nn = 0;
-    let nnn;
-    let results;
-    let arr_i;
-    let arr_n;
-    let tempImg = [null, null, null, null, null];
-    let iImg = [null, null, null, null, null];
-    let nImg = [null, null, null, null, null];
-    const funcArray = [];
 
     function display2(funcArray, interval) {
       funcArray.forEach((func, i) => {
@@ -84,57 +18,69 @@ import "./styles.css";
 
     while (n) {
       i = Math.floor(Math.random() * n--);
+
+      //---
       temp = arr[n];
-      arr_n = document.getElementById(compass.arr_i_n[n]);
-      tempImg[nn] = car_Dimension[temp].img;
-      nnn = nn;
+      arr_n[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[n]);
+      tempImg[Math.floor(nn / 4)] = car_Dimension[temp].img;
+      nn++;
       funcArray.push(() => {
-        arr_n.innerHTML = ``;
-        temp1.innerHTML = `${tempImg[Math.floor(i / 5)]}`;
+        arr_n[Math.floor(nnn / 4)].innerHTML = ``;
+        temp1.innerHTML = `${tempImg[Math.floor(nnn / 4)]}`;
 
-        console.log("tempe" + nnn);
+        console.log("tempe" + tempImg);
+        console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
+        console.log("arr_n" + arr_n);
+        nnn++;
       });
 
+      //---
       arr[n] = arr[i];
-      arr_i = document.getElementById(compass.arr_i_n[i]);
-      arr_n = document.getElementById(compass.arr_i_n[n]);
-      iImg[nn] = car_Dimension[i].img;
-      nnn = nn;
-
+      arr_i[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[i]);
+      arr_n[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[n]);
+      iImg[Math.floor(nn / 4)] = car_Dimension[i].img;
+      nn++;
       funcArray.push(() => {
-        arr_i.innerHTML = ``;
-        arr_n.innerHTML = `${iImg[Math.floor(i / 5)]}`;
+        arr_i[Math.floor(nnn / 4)].innerHTML = ``;
+        arr_n[Math.floor(nnn / 4)].innerHTML = `${iImg[Math.floor(nnn / 4)]}`;
 
-        console.log("arr_i_n" + nnn);
+        console.log("arr_i_n" + iImg);
+        console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
+        nnn++;
       });
 
+      //---
       arr[i] = temp;
-      arr_i = document.getElementById(compass.arr_i_n[i]);
-      tempImg[nn] = car_Dimension[temp].img;
-      nnn = nn;
-
+      arr_i[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[i]);
+      tempImg[Math.floor(nn / 4)] = car_Dimension[temp].img;
+      nn++;
       funcArray.push(() => {
         temp1.innerHTML = ``;
-        arr_i.innerHTML = `${tempImg[Math.floor(i / 5)]}`;
+        arr_i[Math.floor(nnn / 4)].innerHTML = `${
+          tempImg[Math.floor(nnn / 4)]
+        }`;
 
-        console.log("comp" + nnn);
+        console.log("comp" + tempImg);
+        console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
+        nnn++;
       });
-      results = document.getElementById(compass.results[n]);
-      arr_n = document.getElementById(compass.arr_i_n[n]);
-      nImg[nn] = car_Dimension[compass.dice[n]].img;
-      nnn = nn;
 
-      funcArray.push(() => {
-        arr_n.innerHTML = ``;
-        results.innerHTML = `${nImg[Math.floor(i / 5)]}`;
-
-        console.log("result" + nnn);
-      });
+      //---
+      results[Math.floor(nn / 4)] = document.getElementById(compass.results[n]);
+      arr_n[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[n]);
+      nImg[Math.floor(nn / 4)] = car_Dimension[compass.dice[n]].img;
       nn++;
+      funcArray.push(() => {
+        arr_n[Math.floor(nnn / 4)].innerHTML = ``;
+        results[Math.floor(nnn / 4)].innerHTML = `${nImg[Math.floor(nnn / 4)]}`;
+
+        console.log("result" + nImg);
+        console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
+        nnn++;
+      });
     }
 
-    console.log(funcArray);
-    display2(funcArray, 2000);
+    display2(funcArray, 1200);
 
     return arr;
   }
@@ -151,6 +97,15 @@ import "./styles.css";
 
   //------関数定義、ここまで-------//
   //------変数定義---------------//
+  let nn = 0;
+  let nnn = 0;
+  let results = [null, null, null, null, null];
+  let arr_i = [null, null, null, null, null];
+  let arr_n = [null, null, null, null, null];
+  let tempImg = [null, null, null, null, null];
+  let iImg = [null, null, null, null, null];
+  let nImg = [null, null, null, null, null];
+  let funcArray = [null];
 
   //------変数定義、ここまで-------//
   //------DOM取得関連------------//
@@ -307,7 +262,19 @@ import "./styles.css";
     //---
     shuffleButton.disabled = false;
     resetButton.disabled = true;
+
+    //---
+    nn = 0;
+    nnn = 0;
+    results = [null, null, null, null, null];
+    arr_i = [null, null, null, null, null];
+    arr_n = [null, null, null, null, null];
+    tempImg = [null, null, null, null, null];
+    iImg = [null, null, null, null, null];
+    nImg = [null, null, null, null, null];
+    funcArray = [null];
   }
+
   reset();
   //////初期配置、ここまで////////////////////
 

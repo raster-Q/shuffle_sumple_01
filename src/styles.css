@@ -8,14 +8,22 @@ h3 {
   margin-bottom: 1%;
 }
 
+#titleName {
+  height: 10%;
+}
+
+.wordTable {
+  height: 10%;
+}
+
 .wide {
   max-width: 300px;
   min-width: 300px;
 }
 
 #displayTable {
-  max-height: 225px;
-  min-height: 225px;
+  max-height: 240px;
+  min-height: 240px;
 }
 
 .card {

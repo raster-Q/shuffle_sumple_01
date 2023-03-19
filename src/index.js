@@ -8,8 +8,20 @@ import "./styles.css";
 
   function shuffle(arr) {
     let n = arr.length;
-    let temp, i;
+    let temp = null;
+    let i = null;
 
+    let nn = 0; //手数カウンター
+    let nnn = 0; //スロー関数手数カウンター
+    let results = [null, null, null, null, null]; //id用
+    let arr_i = [null, null, null, null, null]; //id用
+    let arr_n = [null, null, null, null, null]; //id用
+    let tempImg = [null, null, null, null, null]; //img用
+    let iImg = [null, null, null, null, null]; //img用
+    let nImg = [null, null, null, null, null]; //img用
+    let funcArray = [null]; //スロー関数用
+
+    //---スロー関数
     function display2(funcArray, interval) {
       funcArray.forEach((func, i) => {
         setTimeout(func, i * interval);
@@ -24,15 +36,27 @@ import "./styles.css";
       arr_n[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[n]);
       tempImg[Math.floor(nn / 4)] = car_Dimension[temp].img;
       nn++;
-      funcArray.push(() => {
-        arr_n[Math.floor(nnn / 4)].innerHTML = ``;
-        temp1.innerHTML = `${tempImg[Math.floor(nnn / 4)]}`;
+      if (funcArray[0] === null) {
+        funcArray[0] = () => {
+          arr_n[Math.floor(nnn / 4)].innerHTML = ``;
+          temp1.innerHTML = `${tempImg[Math.floor(nnn / 4)]}`;
 
-        console.log("tempe" + tempImg);
-        console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
-        console.log("arr_n" + arr_n);
-        nnn++;
-      });
+          console.log("tempe" + tempImg);
+          console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
+          console.log("arr_n" + arr_n);
+          nnn++;
+        };
+      } else {
+        funcArray.push(() => {
+          arr_n[Math.floor(nnn / 4)].innerHTML = ``;
+          temp1.innerHTML = `${tempImg[Math.floor(nnn / 4)]}`;
+
+          console.log("tempe" + tempImg);
+          console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
+          console.log("arr_n" + arr_n);
+          nnn++;
+        });
+      }
 
       //---
       arr[n] = arr[i];
@@ -80,32 +104,32 @@ import "./styles.css";
       });
     }
 
-    display2(funcArray, 1200);
+    funcArray.push(() => {
+      resetButton.disabled = false;
+    });
+
+    display();
+    console.log(funcArray);
+    display2(funcArray, 1500);
 
     return arr;
   }
 
   //---ここまで、シャッフル用関数
 
-  //---
-
-  //---
-
-  //---カード表示用関数
+  //---カードナンバー（「ｎ」枠）表示用関数
+  function display() {
+    an.innerHTML = `${compass.dice[0] + 1}`;
+    bn.innerHTML = `${compass.dice[1] + 1}`;
+    cn.innerHTML = `${compass.dice[2] + 1}`;
+    dn.innerHTML = `${compass.dice[3] + 1}`;
+    en.innerHTML = `${compass.dice[4] + 1}`;
+  }
 
   //---カード表示用、ここまで
-
   //------関数定義、ここまで-------//
+
   //------変数定義---------------//
-  let nn = 0;
-  let nnn = 0;
-  let results = [null, null, null, null, null];
-  let arr_i = [null, null, null, null, null];
-  let arr_n = [null, null, null, null, null];
-  let tempImg = [null, null, null, null, null];
-  let iImg = [null, null, null, null, null];
-  let nImg = [null, null, null, null, null];
-  let funcArray = [null];
 
   //------変数定義、ここまで-------//
   //------DOM取得関連------------//
@@ -151,15 +175,6 @@ import "./styles.css";
   //const g3 = document.getElementById("");
   //const temp3 = document.getElementById("temp3");
 
-  //--- 4
-  const number4 = document.getElementById("number4");
-  const a4 = document.getElementById("a4");
-  const b4 = document.getElementById("b4");
-  const c4 = document.getElementById("c4");
-  const d4 = document.getElementById("d4");
-  const e4 = document.getElementById("e4");
-  //const g4 = document.getElementById("");
-  //const temp4 = document.getElementById("temp4");
 */
   //--- 5
   const result = document.getElementById("result");
@@ -170,6 +185,16 @@ import "./styles.css";
   const e5 = document.getElementById("e5");
   //const g5 = document.getElementById("");
   //const temp5 = document.getElementById("temp5");
+
+  //--- index
+  const number = document.getElementById("number");
+  const an = document.getElementById("an");
+  const bn = document.getElementById("bn");
+  const cn = document.getElementById("cn");
+  const dn = document.getElementById("dn");
+  const en = document.getElementById("en");
+  //const g4 = document.getElementById("");
+  //const temp4 = document.getElementById("temp4");
 
   //--- ボタン
   const shuffleButton = document.getElementById("shuffleButton");
@@ -233,9 +258,10 @@ import "./styles.css";
   number1.textContent = "1";
   //  number2.textContent = `2`;
   //  number3.textContent = `3`;
-  //  number4.textContent = `4`;
   result.textContent = "r";
+  number.textContent = "n";
   temps.textContent = "temp";
+
   function reset() {
     //---
     compass.dice[0] = 0;
@@ -243,6 +269,9 @@ import "./styles.css";
     compass.dice[2] = 2;
     compass.dice[3] = 3;
     compass.dice[4] = 4;
+
+    //---
+    display();
 
     //---
     a1.innerHTML = `${car_Dimension[compass.dice[0]].img}`;
@@ -262,17 +291,6 @@ import "./styles.css";
     //---
     shuffleButton.disabled = false;
     resetButton.disabled = true;
-
-    //---
-    nn = 0;
-    nnn = 0;
-    results = [null, null, null, null, null];
-    arr_i = [null, null, null, null, null];
-    arr_n = [null, null, null, null, null];
-    tempImg = [null, null, null, null, null];
-    iImg = [null, null, null, null, null];
-    nImg = [null, null, null, null, null];
-    funcArray = [null];
   }
 
   reset();
@@ -283,7 +301,6 @@ import "./styles.css";
   shuffleButton.addEventListener("click", () => {
     shuffle(compass.dice);
     shuffleButton.disabled = true;
-    resetButton.disabled = false;
   });
 
   resetButton.addEventListener("click", reset, false);

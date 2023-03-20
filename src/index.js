@@ -5,7 +5,6 @@ import "./styles.css";
 
   //------関数定義---------------//
   //---シャッフル用関数
-
   function shuffle(arr) {
     let n = arr.length;
     let temp = null;
@@ -23,53 +22,47 @@ import "./styles.css";
 
     //---スロー関数
     function display2(funcArray, interval) {
-      funcArray.forEach((func, i) => {
-        setTimeout(func, i * interval);
+      funcArray.forEach((func, ii) => {
+        setTimeout(func, ii * interval);
       });
     }
 
+    //---
     while (n) {
       i = Math.floor(Math.random() * n--);
 
       //---
       temp = arr[n];
       arr_n[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[n]);
+      arr_i[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[i]);
       tempImg[Math.floor(nn / 4)] = car_Dimension[temp].img;
       nn++;
-      if (funcArray[0] === null) {
-        funcArray[0] = () => {
-          arr_n[Math.floor(nnn / 4)].innerHTML = ``;
-          temp1.innerHTML = `${tempImg[Math.floor(nnn / 4)]}`;
 
-          console.log("tempe" + tempImg);
-          console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
-          console.log("arr_n" + arr_n);
-          nnn++;
-        };
-      } else {
-        funcArray.push(() => {
-          arr_n[Math.floor(nnn / 4)].innerHTML = ``;
-          temp1.innerHTML = `${tempImg[Math.floor(nnn / 4)]}`;
-
-          console.log("tempe" + tempImg);
-          console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
-          console.log("arr_n" + arr_n);
-          nnn++;
-        });
-      }
+      funcArray.push(() => {
+        arr_n[Math.floor(nnn / 4)].innerHTML = ``;
+        arr_n[Math.floor(nnn / 4)].style.backgroundColor = "white";
+        temp1.innerHTML = `${tempImg[Math.floor(nnn / 4)]}`;
+        as.innerHTML = arr_i[Math.floor(nnn / 4)] === a1 ? `★` : ``;
+        bs.innerHTML = arr_i[Math.floor(nnn / 4)] === b1 ? `★` : ``;
+        cs.innerHTML = arr_i[Math.floor(nnn / 4)] === c1 ? `★` : ``;
+        ds.innerHTML = arr_i[Math.floor(nnn / 4)] === d1 ? `★` : ``;
+        es.innerHTML = arr_i[Math.floor(nnn / 4)] === e1 ? `★` : ``;
+        nnn++;
+      });
 
       //---
       arr[n] = arr[i];
-      arr_i[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[i]);
       arr_n[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[n]);
       iImg[Math.floor(nn / 4)] = car_Dimension[i].img;
       nn++;
+
       funcArray.push(() => {
         arr_i[Math.floor(nnn / 4)].innerHTML = ``;
-        arr_n[Math.floor(nnn / 4)].innerHTML = `${iImg[Math.floor(nnn / 4)]}`;
-
-        console.log("arr_i_n" + iImg);
-        console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
+        arr_n[Math.floor(nnn / 4)].innerHTML = `${nImg[Math.floor(nnn / 4)]}`;
+        arr_n[Math.floor(nnn / 4)].style.opacity =
+          tempImg[Math.floor(nnn / 4)] === nImg[Math.floor(nnn / 4)]
+            ? 0.4
+            : `1.0`;
         nnn++;
       });
 
@@ -78,14 +71,13 @@ import "./styles.css";
       arr_i[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[i]);
       tempImg[Math.floor(nn / 4)] = car_Dimension[temp].img;
       nn++;
+
       funcArray.push(() => {
+        arr_n[Math.floor(nnn / 4)].style.opacity = 1.0;
         temp1.innerHTML = ``;
         arr_i[Math.floor(nnn / 4)].innerHTML = `${
           tempImg[Math.floor(nnn / 4)]
         }`;
-
-        console.log("comp" + tempImg);
-        console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
         nnn++;
       });
 
@@ -94,27 +86,32 @@ import "./styles.css";
       arr_n[Math.floor(nn / 4)] = document.getElementById(compass.arr_i_n[n]);
       nImg[Math.floor(nn / 4)] = car_Dimension[compass.dice[n]].img;
       nn++;
+
       funcArray.push(() => {
         arr_n[Math.floor(nnn / 4)].innerHTML = ``;
         results[Math.floor(nnn / 4)].innerHTML = `${nImg[Math.floor(nnn / 4)]}`;
-
-        console.log("result" + nImg);
-        console.log("nn" + nn + "nnn" + Math.floor(nnn / 4));
+        statusClean();
         nnn++;
       });
     }
 
+    //---リセットボタン、押せるように
     funcArray.push(() => {
       resetButton.disabled = false;
     });
 
+    //---配列[0]のnullを外す
+    if (funcArray[0] === null) {
+      funcArray.shift();
+    }
+
+    //---カードナンバー（「ｎ」枠）表示用関数
     display();
-    console.log(funcArray);
+    //---スロー関数、発動
     display2(funcArray, 1500);
 
     return arr;
   }
-
   //---ここまで、シャッフル用関数
 
   //---カードナンバー（「ｎ」枠）表示用関数
@@ -127,11 +124,18 @@ import "./styles.css";
   }
 
   //---カード表示用、ここまで
+
+  //---ステータス表示リセット用
+  function statusClean() {
+    as.innerHTML = ``;
+    bs.innerHTML = ``;
+    cs.innerHTML = ``;
+    ds.innerHTML = ``;
+    es.innerHTML = ``;
+  }
+  //---ステータス表示リセット、ここまで
   //------関数定義、ここまで-------//
 
-  //------変数定義---------------//
-
-  //------変数定義、ここまで-------//
   //------DOM取得関連------------//
   const titleName = document.getElementById("titleName");
 
@@ -142,7 +146,6 @@ import "./styles.css";
   const cs = document.getElementById("cs");
   const ds = document.getElementById("ds");
   const es = document.getElementById("es");
-  //const gs = document.getElementById("");
   const temps = document.getElementById("temps");
 
   //--- 1
@@ -152,30 +155,8 @@ import "./styles.css";
   const c1 = document.getElementById("c1");
   const d1 = document.getElementById("d1");
   const e1 = document.getElementById("e1");
-  //const g1 = document.getElementById("");
   const temp1 = document.getElementById("temp1");
-  /*
-  //--- 2
-  const number2 = document.getElementById("number2");
-  const a2 = document.getElementById("a2");
-  const b2 = document.getElementById("b2");
-  const c2 = document.getElementById("c2");
-  const d2 = document.getElementById("d2");
-  const e2 = document.getElementById("e2");
-  //const g2 = document.getElementById("");
-  //const temp2 = document.getElementById("temp2");
 
-  //--- 3
-  const number3 = document.getElementById("number3");
-  const a3 = document.getElementById("a3");
-  const b3 = document.getElementById("b3");
-  const c3 = document.getElementById("c3");
-  const d3 = document.getElementById("d3");
-  const e3 = document.getElementById("e3");
-  //const g3 = document.getElementById("");
-  //const temp3 = document.getElementById("temp3");
-
-*/
   //--- 5
   const result = document.getElementById("result");
   const a5 = document.getElementById("a5");
@@ -183,8 +164,6 @@ import "./styles.css";
   const c5 = document.getElementById("c5");
   const d5 = document.getElementById("d5");
   const e5 = document.getElementById("e5");
-  //const g5 = document.getElementById("");
-  //const temp5 = document.getElementById("temp5");
 
   //--- index
   const number = document.getElementById("number");
@@ -193,16 +172,15 @@ import "./styles.css";
   const cn = document.getElementById("cn");
   const dn = document.getElementById("dn");
   const en = document.getElementById("en");
-  //const g4 = document.getElementById("");
-  //const temp4 = document.getElementById("temp4");
 
   //--- ボタン
   const shuffleButton = document.getElementById("shuffleButton");
   const resetButton = document.getElementById("resetButton");
 
-  //--- MP3
-  const slowSound = document.getElementById("slowSound");
-
+  //--- 注意書き
+  const notice01 = document.getElementById("notice01");
+  const notice02 = document.getElementById("notice02");
+  const notice03 = document.getElementById("notice03");
   //------DOM取得関連、ここまで------------//
 
   //------配列定義-----------------------//
@@ -236,31 +214,28 @@ import "./styles.css";
     }
   ];
   //------配列定義、ここまで---------------//
+
+  //------オブジェクト定義-----------------//
   //---座標
   const compass = {
     dice: [0, 1, 2, 3, 4],
-    a: ["a1", "a2", "a3", "a4", "a5"],
-    b: ["b1", "b2", "b3", "b4", "b5"],
-    c: ["c1", "c2", "c3", "c4", "c5"],
-    d: ["d1", "d2", "d3", "d4", "d5"],
-    e: ["e1", "e2", "e3", "e4", "e5"],
     arr_i_n: ["a1", "b1", "c1", "d1", "e1"],
-    results: ["a5", "b5", "c5", "d5", "e5"],
-    temp: ["temps", "temp2", "temp3", "temp4", "temp5"]
+    results: ["a5", "b5", "c5", "d5", "e5"]
+    //---座標、ここまで
   };
-
-  //------オブジェクト定義-----------------//
   //------オブジェクト定義、ここまで---------//
 
   //////初期配置///////////////////////////
   titleName.innerHTML = `<h3>shuffleコード テスト</h3>`;
   status.textContent = "S";
   number1.textContent = "1";
-  //  number2.textContent = `2`;
-  //  number3.textContent = `3`;
   result.textContent = "r";
-  number.textContent = "n";
+  number.textContent = "d";
   temps.textContent = "temp";
+  notice01.innerHTML = `※1、タロットカード画像 出典:<br>
+  　『フリー百科事典ウィキペディア (Wikipedia)』`;
+  notice02.textContent = "※2、temp ＝ 最終項カード、一時的退避場所";
+  notice03.textContent = "※3、★ ＝ ランダム抽出、tempと交換";
 
   function reset() {
     //---
@@ -270,17 +245,22 @@ import "./styles.css";
     compass.dice[3] = 3;
     compass.dice[4] = 4;
 
-    //---
-    display();
+    //---「Ｓ」枠、表示クリーンに
+    statusClean();
 
-    //---
+    //---「1」枠、カード初期配置
     a1.innerHTML = `${car_Dimension[compass.dice[0]].img}`;
+    a1.style.backgroundColor = "olivedrab";
     b1.innerHTML = `${car_Dimension[compass.dice[1]].img}`;
+    b1.style.backgroundColor = "olivedrab";
     c1.innerHTML = `${car_Dimension[compass.dice[2]].img}`;
+    c1.style.backgroundColor = "olivedrab";
     d1.innerHTML = `${car_Dimension[compass.dice[3]].img}`;
+    d1.style.backgroundColor = "olivedrab";
     e1.innerHTML = `${car_Dimension[compass.dice[4]].img}`;
+    e1.style.backgroundColor = "olivedrab";
 
-    //---
+    //---「ｒ」枠、表示クリーンに
     a5.innerHTML = ``;
     b5.innerHTML = ``;
     c5.innerHTML = ``;
@@ -288,7 +268,10 @@ import "./styles.css";
     e5.innerHTML = ``;
     temp1.innerHTML = ``;
 
-    //---
+    //---「ｎ」枠、カードナンバー及びダイス表示
+    display();
+
+    //---ボタン関連
     shuffleButton.disabled = false;
     resetButton.disabled = true;
   }
@@ -296,14 +279,16 @@ import "./styles.css";
   reset();
   //////初期配置、ここまで////////////////////
 
-  //------スクリプト----------------//
+  //------イベント関連----------------//
   //---シャッフルボタン、イベント
   shuffleButton.addEventListener("click", () => {
     shuffle(compass.dice);
     shuffleButton.disabled = true;
   });
 
+  //---リセットボタン、イベント
   resetButton.addEventListener("click", reset, false);
 
-  //////即時関数、ここまで
+  //------イベント関連、ここまで-------//
+  //////即時関数、ここまで//////////////
 })();

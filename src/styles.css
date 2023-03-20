@@ -50,3 +50,8 @@ h3 {
 .spaceCell {
   width: 2%;
 }
+
+.notice {
+  text-align: left;
+  font-size: 70%;
+}

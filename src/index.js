@@ -47,6 +47,7 @@ import "./styles.css";
         cs.innerHTML = arr_i[Math.floor(nnn / 4)] === c1 ? `★` : ``;
         ds.innerHTML = arr_i[Math.floor(nnn / 4)] === d1 ? `★` : ``;
         es.innerHTML = arr_i[Math.floor(nnn / 4)] === e1 ? `★` : ``;
+        p1.textContent = `① 最終項(ｎ)を、tempへ逃がす`;
         nnn++;
       });
 
@@ -63,6 +64,7 @@ import "./styles.css";
           tempImg[Math.floor(nnn / 4)] === nImg[Math.floor(nnn / 4)]
             ? 0.4
             : `1.0`;
+        p1.textContent = `② ランダム抽出「★(i)」を、最終項(ｎ)へ移動`;
         nnn++;
       });
 
@@ -78,6 +80,7 @@ import "./styles.css";
         arr_i[Math.floor(nnn / 4)].innerHTML = `${
           tempImg[Math.floor(nnn / 4)]
         }`;
+        p1.textContent = `③ tempを、ランダム抽出枠「★(i)」へ移動`;
         nnn++;
       });
 
@@ -91,6 +94,7 @@ import "./styles.css";
         arr_n[Math.floor(nnn / 4)].innerHTML = ``;
         results[Math.floor(nnn / 4)].innerHTML = `${nImg[Math.floor(nnn / 4)]}`;
         statusClean();
+        p1.textContent = `④ 最終項(ｎ)は決定、↓result枠へ移動`;
         nnn++;
       });
     }
@@ -108,7 +112,7 @@ import "./styles.css";
     //---カードナンバー（「ｎ」枠）表示用関数
     display();
     //---スロー関数、発動
-    display2(funcArray, 1500);
+    display2(funcArray, 1800);
 
     return arr;
   }
@@ -173,6 +177,10 @@ import "./styles.css";
   const dn = document.getElementById("dn");
   const en = document.getElementById("en");
 
+  //--- process
+  const process = document.getElementById("process");
+  const p1 = document.getElementById("p1");
+
   //--- ボタン
   const shuffleButton = document.getElementById("shuffleButton");
   const resetButton = document.getElementById("resetButton");
@@ -226,11 +234,12 @@ import "./styles.css";
   //------オブジェクト定義、ここまで---------//
 
   //////初期配置///////////////////////////
-  titleName.innerHTML = `<h3>shuffleコード テスト</h3>`;
+  titleName.innerHTML = `<h3>shuffleコード テスト ver0.1</h3>`;
   status.textContent = "S";
   number1.textContent = "1";
   result.textContent = "r";
-  number.textContent = "d";
+  number.innerHTML = `<i>d</i>`;
+  process.textContent = "P";
   temps.textContent = "temp";
   notice01.innerHTML = `※1、タロットカード画像 出典:<br>
   　『フリー百科事典ウィキペディア (Wikipedia)』`;
@@ -268,8 +277,11 @@ import "./styles.css";
     e5.innerHTML = ``;
     temp1.innerHTML = ``;
 
-    //---「ｎ」枠、カードナンバー及びダイス表示
+    //---「d」枠、カードナンバー及びダイス表示
     display();
+
+    //--- 「Ｐ」枠、作業工程、クリーンに
+    p1.textContent = ``;
 
     //---ボタン関連
     shuffleButton.disabled = false;

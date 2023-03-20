@@ -22,8 +22,8 @@ h3 {
 }
 
 #displayTable {
-  max-height: 240px;
-  min-height: 240px;
+  max-height: 300px;
+  min-height: 300px;
 }
 
 .card {
@@ -40,7 +40,7 @@ h3 {
 }
 
 .cardTable {
-  height: 35%;
+  height: 30%;
 }
 
 .statusCell {
@@ -54,4 +54,10 @@ h3 {
 .notice {
   text-align: left;
   font-size: 70%;
+}
+
+#p1 {
+  font-size: 70%;
+  text-align: left;
+  height: 10%;
 }

@@ -203,29 +203,29 @@ import "./styles.css";
   // car = car (d)
   const car_Dimension = [
     {
-      name: "ペンタクルA",
+      name: "ハートのA",
       img:
-        '<img class="card" src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Pents01.jpg" />'
+        '<img class="card" alt="ハートのA" src="https://upload.wikimedia.org/wikipedia/commons/5/57/Playing_card_heart_A.svg" />'
     },
     {
-      name: "ペンタクル2",
+      name: "ハートの2",
       img:
-        '<img class="card" src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Pents02.jpg" />'
+        '<img class="card" alt="ハートの2" src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Playing_card_heart_2.svg" />'
     },
     {
-      name: "ペンタクル3",
+      name: "ハートの3",
       img:
-        '<img class="card" src="https://upload.wikimedia.org/wikipedia/commons/4/42/Pents03.jpg" />'
+        '<img class="card" alt="ハートの3" src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Playing_card_heart_3.svg" />'
     },
     {
-      name: "ペンタクル4",
+      name: "ハートの4",
       img:
-        '<img class="card" src="https://upload.wikimedia.org/wikipedia/commons/3/35/Pents04.jpg" />'
+        '<img class="card" alt="ハートの4"; src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Playing_card_heart_4.svg" />'
     },
     {
-      name: "ペンタクル5",
+      name: "ハートの5",
       img:
-        '<img class="card" src="https://upload.wikimedia.org/wikipedia/commons/9/96/Pents05.jpg" />'
+        '<img class="card" alt="ハートの5" src="https://upload.wikimedia.org/wikipedia/commons/5/52/Playing_card_heart_5.svg" />'
     }
   ];
   //------配列定義、ここまで---------------//
@@ -248,8 +248,7 @@ import "./styles.css";
   diceNum.innerHTML = `<i>d</i>`;
   process.textContent = "P";
   temps.textContent = "temp";
-  notice01.innerHTML = `※1、タロットカード画像 出典:<br>
-  　『フリー百科事典ウィキペディア (Wikipedia)』`;
+  notice01.innerHTML = `※1、トランプ(ハート)画像<br>　出典:<a href="https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A9%E3%83%B3%E3%83%97">『フリー百科事典ウィキペディア (Wikipedia)』</a><br>　licence:クリエイティブコモンズ<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja">表示-継承 3.0 非移植</a><br>　en:User:<a href="https://en.wikipedia.org/wiki/User:Cburnett">Cburnett</a>`;
   notice02.textContent = "※2、temp ＝ 最終項(ｎ)の、一時的退避場所";
   notice03.innerHTML = `※3、★ ＝ ランダム抽出(i）を、tempと交換<br>※4、最終項(ｎ)は、背景色が緑→白へ変化<br><br><center>--------log--------</center>`;
 

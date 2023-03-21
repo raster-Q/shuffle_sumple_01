@@ -64,7 +64,7 @@ import "./styles.css";
           tempImg[Math.floor(nnn / 4)] === nImg[Math.floor(nnn / 4)]
             ? 0.4
             : `1.0`;
-        p1.textContent = `② ★(i)　→　最終項(ｎ)`;
+        p1.textContent = `② ★(i)　　　　→　最終項(ｎ)`;
         nnn++;
       });
 
@@ -80,7 +80,7 @@ import "./styles.css";
         arr_i[Math.floor(nnn / 4)].innerHTML = `${
           tempImg[Math.floor(nnn / 4)]
         }`;
-        p1.textContent = `③ ★(i) ← temp`;
+        p1.textContent = `③ ★(i)　　 　　←　temp`;
         nnn++;
       });
 
@@ -91,17 +91,20 @@ import "./styles.css";
       nn++;
 
       funcArray.push(() => {
-        arr_n[Math.floor(nnn / 4)].innerHTML = ``;
+        arr_n[Math.floor(nnn / 4)].innerHTML = `↓`;
         results[Math.floor(nnn / 4)].innerHTML = `${nImg[Math.floor(nnn / 4)]}`;
         statusClean();
-        p1.textContent = `④ 最終項(ｎ) ↓ result枠へ`;
+        p1.textContent = `④ 最終項(ｎ) 　↓ result枠へ`;
         nnn++;
       });
     }
 
-    //---リセットボタン、押せるように
+    //---ログ抽出＆リセットボタン押せるように
     funcArray.push(() => {
       resetButton.disabled = false;
+      let diceElm = document.createElement("div");
+      diceElm.innerHTML = `${compass.dice.map((e) => e + 1)}`;
+      logElm.prepend(diceElm);
     });
 
     //---配列[0]のnullを外す
@@ -111,6 +114,7 @@ import "./styles.css";
 
     //---カードナンバー（「ｎ」枠）表示用関数
     display();
+
     //---スロー関数、発動
     display2(funcArray, 1800);
 
@@ -143,7 +147,7 @@ import "./styles.css";
   //------DOM取得関連------------//
   const titleName = document.getElementById("titleName");
 
-  //--- start
+  //--- s
   const status = document.getElementById("status");
   const as = document.getElementById("as");
   const bs = document.getElementById("bs");
@@ -161,7 +165,7 @@ import "./styles.css";
   const e1 = document.getElementById("e1");
   const temp1 = document.getElementById("temp1");
 
-  //--- 5
+  //--- r
   const result = document.getElementById("result");
   const a5 = document.getElementById("a5");
   const b5 = document.getElementById("b5");
@@ -169,8 +173,8 @@ import "./styles.css";
   const d5 = document.getElementById("d5");
   const e5 = document.getElementById("e5");
 
-  //--- index
-  const number = document.getElementById("number");
+  //--- d
+  const diceNum = document.getElementById("diceNum");
   const an = document.getElementById("an");
   const bn = document.getElementById("bn");
   const cn = document.getElementById("cn");
@@ -189,6 +193,9 @@ import "./styles.css";
   const notice01 = document.getElementById("notice01");
   const notice02 = document.getElementById("notice02");
   const notice03 = document.getElementById("notice03");
+
+  //--- ログ
+  const logElm = document.getElementById("logElm");
   //------DOM取得関連、ここまで------------//
 
   //------配列定義-----------------------//
@@ -238,13 +245,13 @@ import "./styles.css";
   status.textContent = "S";
   number1.textContent = "1";
   result.textContent = "r";
-  number.innerHTML = `<i>d</i>`;
+  diceNum.innerHTML = `<i>d</i>`;
   process.textContent = "P";
   temps.textContent = "temp";
   notice01.innerHTML = `※1、タロットカード画像 出典:<br>
   　『フリー百科事典ウィキペディア (Wikipedia)』`;
   notice02.textContent = "※2、temp ＝ 最終項(ｎ)の、一時的退避場所";
-  notice03.innerHTML = `※3、★ ＝ ランダム抽出(i）を、tempと交換<br>※4、最終項(ｎ)は、背景色が緑→白へ変化`;
+  notice03.innerHTML = `※3、★ ＝ ランダム抽出(i）を、tempと交換<br>※4、最終項(ｎ)は、背景色が緑→白へ変化<br><br><center>--------log--------</center>`;
 
   function reset() {
     //---
@@ -289,7 +296,7 @@ import "./styles.css";
   }
 
   reset();
-  //////初期配置、ここまで////////////////////
+  //////初期配置、ここまで///////////////
 
   //------イベント関連----------------//
   //---シャッフルボタン、イベント

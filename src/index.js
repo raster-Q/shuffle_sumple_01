@@ -47,7 +47,7 @@ import "./styles.css";
         cs.innerHTML = arr_i[Math.floor(nnn / 4)] === c1 ? `★` : ``;
         ds.innerHTML = arr_i[Math.floor(nnn / 4)] === d1 ? `★` : ``;
         es.innerHTML = arr_i[Math.floor(nnn / 4)] === e1 ? `★` : ``;
-        p1.textContent = `① 最終項(ｎ)を、tempへ逃がす`;
+        p1.textContent = `① 最終項(ｎ)　→　temp`;
         nnn++;
       });
 
@@ -64,7 +64,7 @@ import "./styles.css";
           tempImg[Math.floor(nnn / 4)] === nImg[Math.floor(nnn / 4)]
             ? 0.4
             : `1.0`;
-        p1.textContent = `② ランダム抽出「★(i)」を、最終項(ｎ)へ移動`;
+        p1.textContent = `② ★(i)　→　最終項(ｎ)`;
         nnn++;
       });
 
@@ -80,7 +80,7 @@ import "./styles.css";
         arr_i[Math.floor(nnn / 4)].innerHTML = `${
           tempImg[Math.floor(nnn / 4)]
         }`;
-        p1.textContent = `③ tempを、ランダム抽出枠「★(i)」へ移動`;
+        p1.textContent = `③ ★(i) ← temp`;
         nnn++;
       });
 
@@ -94,7 +94,7 @@ import "./styles.css";
         arr_n[Math.floor(nnn / 4)].innerHTML = ``;
         results[Math.floor(nnn / 4)].innerHTML = `${nImg[Math.floor(nnn / 4)]}`;
         statusClean();
-        p1.textContent = `④ 最終項(ｎ)は決定、↓result枠へ移動`;
+        p1.textContent = `④ 最終項(ｎ) ↓ result枠へ`;
         nnn++;
       });
     }
@@ -243,8 +243,8 @@ import "./styles.css";
   temps.textContent = "temp";
   notice01.innerHTML = `※1、タロットカード画像 出典:<br>
   　『フリー百科事典ウィキペディア (Wikipedia)』`;
-  notice02.textContent = "※2、temp ＝ 最終項カード、一時的退避場所";
-  notice03.textContent = "※3、★ ＝ ランダム抽出、tempと交換";
+  notice02.textContent = "※2、temp ＝ 最終項(ｎ)の、一時的退避場所";
+  notice03.innerHTML = `※3、★ ＝ ランダム抽出(i）を、tempと交換<br>※4、最終項(ｎ)は、背景色が緑→白へ変化`;
 
   function reset() {
     //---

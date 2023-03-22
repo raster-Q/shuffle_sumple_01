@@ -11,7 +11,6 @@ import "./styles.css";
     let i = null;
 
     let nn = 0; //手数カウンター
-    let nnn = 0; //スロー関数手数カウンター
     let results = [null, null, null, null, null]; //id用
     let arr_i = [null, null, null, null, null]; //id用
     let arr_n = [null, null, null, null, null]; //id用
@@ -22,8 +21,10 @@ import "./styles.css";
 
     //---スロー関数
     function display2(funcArray, interval) {
-      funcArray.forEach((func, ii) => {
-        setTimeout(func, ii * interval);
+      funcArray.forEach((func, nnn) => {
+        setTimeout(() => {
+          func(nnn);
+        }, nnn * interval);
       });
     }
 
@@ -38,17 +39,16 @@ import "./styles.css";
       tempImg[Math.floor(nn / 4)] = car_Dimension[temp].img;
       nn++;
 
-      funcArray.push(() => {
+      funcArray.push((nnn) => {
         arr_n[Math.floor(nnn / 4)].innerHTML = ``;
         arr_n[Math.floor(nnn / 4)].style.backgroundColor = "white";
-        temp1.innerHTML = `${tempImg[Math.floor(nnn / 4)]}`;
+        temp1.innerHTML = `${tempImg[Math.floor((nnn + 1) / 4)]}`;
         as.innerHTML = arr_i[Math.floor(nnn / 4)] === a1 ? `★` : ``;
         bs.innerHTML = arr_i[Math.floor(nnn / 4)] === b1 ? `★` : ``;
         cs.innerHTML = arr_i[Math.floor(nnn / 4)] === c1 ? `★` : ``;
         ds.innerHTML = arr_i[Math.floor(nnn / 4)] === d1 ? `★` : ``;
         es.innerHTML = arr_i[Math.floor(nnn / 4)] === e1 ? `★` : ``;
         p1.textContent = `① 最終項(ｎ)　→　temp`;
-        nnn++;
       });
 
       //---
@@ -57,7 +57,7 @@ import "./styles.css";
       iImg[Math.floor(nn / 4)] = car_Dimension[i].img;
       nn++;
 
-      funcArray.push(() => {
+      funcArray.push((nnn) => {
         arr_i[Math.floor(nnn / 4)].innerHTML = ``;
         arr_n[Math.floor(nnn / 4)].innerHTML = `${nImg[Math.floor(nnn / 4)]}`;
         arr_n[Math.floor(nnn / 4)].style.opacity =
@@ -65,7 +65,6 @@ import "./styles.css";
             ? 0.4
             : `1.0`;
         p1.textContent = `② ★(i)　　　　→　最終項(ｎ)`;
-        nnn++;
       });
 
       //---
@@ -74,14 +73,13 @@ import "./styles.css";
       tempImg[Math.floor(nn / 4)] = car_Dimension[temp].img;
       nn++;
 
-      funcArray.push(() => {
+      funcArray.push((nnn) => {
         arr_n[Math.floor(nnn / 4)].style.opacity = 1.0;
         temp1.innerHTML = ``;
         arr_i[Math.floor(nnn / 4)].innerHTML = `${
           tempImg[Math.floor(nnn / 4)]
         }`;
         p1.textContent = `③ ★(i)　　 　　←　temp`;
-        nnn++;
       });
 
       //---
@@ -90,12 +88,11 @@ import "./styles.css";
       nImg[Math.floor(nn / 4)] = car_Dimension[compass.dice[n]].img;
       nn++;
 
-      funcArray.push(() => {
+      funcArray.push((nnn) => {
         arr_n[Math.floor(nnn / 4)].innerHTML = `↓`;
         results[Math.floor(nnn / 4)].innerHTML = `${nImg[Math.floor(nnn / 4)]}`;
         statusClean();
         p1.textContent = `④ 最終項(ｎ) 　↓ result枠へ`;
-        nnn++;
       });
     }
 

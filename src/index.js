@@ -245,7 +245,7 @@ import "./styles.css";
   diceNum.innerHTML = `<i>d</i>`;
   process.textContent = "P";
   temps.textContent = "temp";
-  notice01.innerHTML = `※1、トランプ(ハート)画像<br>　出典:<a href="https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A9%E3%83%B3%E3%83%97">『フリー百科事典ウィキペディア (Wikipedia)』</a><br>　licence:クリエイティブコモンズ<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja">表示-継承 3.0 非移植</a><br>　en:User:<a href="https://en.wikipedia.org/wiki/User:Cburnett">Cburnett</a>`;
+  notice01.innerHTML = `※1、トランプ(ハート)画像<br>　出典:<a href="https://ja.wikipedia.org/wiki/%E3%83%88%E3%83%A9%E3%83%B3%E3%83%97" target="_blank">『フリー百科事典ウィキペディア (Wikipedia)』</a><br>　licence:クリエイティブコモンズ<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.ja" target="_blank">表示-継承 3.0 非移植</a><br>　en:User:<a href="https://en.wikipedia.org/wiki/User:Cburnett" target="_blank">Cburnett</a>`;
   notice02.textContent = "※2、temp ＝ 最終項(ｎ)の、一時的退避場所";
   notice03.innerHTML = `※3、★ ＝ ランダム抽出(i）を、tempと交換<br>※4、最終項(ｎ)は、背景色が緑→白へ変化<br><br><center>--------log--------</center>`;
 
